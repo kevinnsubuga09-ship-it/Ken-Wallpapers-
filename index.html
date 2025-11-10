@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEN WALLPAPERS - A Futuristic World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #000000 100%);
+            color: #ffffff;
+        }
+
+        body.light {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 50%, #ffffff 100%);
+            color: #1a0000;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 2px solid;
+            margin-bottom: 30px;
+        }
+
+        body.dark header {
+            border-color: #8b0000;
+        }
+
+        body.light header {
+            border-color: #ff4444;
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .motto {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            padding: 12px 30px;
+            border: 2px solid;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body.dark nav button {
+            color: #ffffff;
+            border-color: #8b0000;
+        }
+
+        body.dark nav button:hover,
+        body.dark nav button.active {
+            background: #8b0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.5);
+        }
+
+        body.light nav button {
+            color: #1a0000;
+            border-color: #ff4444;
+        }
+
+        body.light nav button:hover,
+        body.light nav button.active {
+            background: #ff4444;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        body.dark .theme-toggle {
+            border-color: #8b0000;
+            color: #ffffff;
+        }
+
+        body.dark .theme-toggle:hover {
+            background: #8b0000;
+            transform: rotate(180deg);
+        }
+
+        body.light .theme-toggle {
+            border-color: #ff4444;
+            color: #1a0000;
+        }
+
+        body.light .theme-toggle:hover {
+            background: #ff4444;
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 16px;
+            border: 2px solid;
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .search-container input {
+            background: rgba(139, 0, 0, 0.1);
+            border-color: #8b0000;
+            color: #ffffff;
+        }
+
+        body.dark .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        body.light .search-container input {
+            background: white;
+            border-color: #ff4444;
+            color: #1a0000;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .category-filter button {
+            padding: 10px 25px;
+            border: 2px solid;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body.dark .category-filter button {
+            color: #ffffff;
+            border-color: #8b0000;
+        }
+
+        body.dark .category-filter button:hover,
+        body.dark .category-filter button.active {
+            background: #8b0000;
+        }
+
+        body.light .category-filter button {
+            color: #1a0000;
+            border-color: #ff4444;
+        }
+
+        body.light .category-filter button:hover,
+        body.light .category-filter button.active {
+            background: #ff4444;
+            color: white;
+        }
+
+        /* Add Wallpaper Button */
+        .add-wallpaper-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        body.dark .add-wallpaper-btn {
+            background: #8b0000;
+            color: white;
+        }
+
+        body.light .add-wallpaper-btn {
+            background: #ff4444;
+            color: white;
+        }
+
+        .add-wallpaper-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* Wallpaper Grid */
+        .wallpaper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .wallpaper-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 16/9;
+        }
+
+        body.dark .wallpaper-card {
+            border: 2px solid #8b0000;
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        body.light .wallpaper-card {
+            border: 2px solid #ff4444;
+            box-shadow: 0 5px 20px rgba(255, 68, 68, 0.2);
+        }
+
+        .wallpaper-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.5);
+        }
+
+        .wallpaper-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .wallpaper-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .wallpaper-card:hover .wallpaper-info {
+            transform: translateY(0);
+        }
+
+        .wallpaper-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wallpaper-category {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        body.dark .modal-content {
+            background: linear-gradient(135deg, #1a0000, #330000);
+            border: 2px solid #8b0000;
+        }
+
+        body.light .modal-content {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border: 2px solid #ff4444;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: inherit;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        .modal h2 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        body.dark .form-group input,
+        body.dark .form-group select {
+            background: rgba(139, 0, 0, 0.1);
+            border-color: #8b0000;
+            color: white;
+        }
+
+        body.light .form-group input,
+        body.light .form-group select {
+            background: white;
+            border-color: #ff4444;
+            color: #1a0000;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body.dark .btn {
+            background: #8b0000;
+            color: white;
+        }
+
+        body.light .btn {
+            background: #ff4444;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.5);
+        }
+
+        .download-options {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .download-btn {
+            padding: 15px;
+            border: 2px solid;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        body.dark .download-btn {
+            border-color: #8b0000;
+            color: white;
+        }
+
+        body.dark .download-btn:hover {
+            background: #8b0000;
+        }
+
+        body.light .download-btn {
+            border-color: #ff4444;
+            color: #1a0000;
+        }
+
+        body.light .download-btn:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        /* About Page */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 20px;
+            line-height: 1.8;
+        }
+
+        body.dark .about-content {
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid #8b0000;
+        }
+
+        body.light .about-content {
+            background: white;
+            border: 2px solid #ff4444;
+        }
+
+        .about-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2em;
+            }
+
+            .wallpaper-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            nav button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="container">
+        <header>
+            <div class="logo">KEN WALLPAPERS</div>
+            <div class="motto">A Futuristic World</div>
+        </header>
+
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+        <nav>
+            <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+            <button class="nav-btn" onclick="showPage('categories')">📁 Categories</button>
+            <button class="nav-btn" onclick="showPage('search')">🔍 Search</button>
+            <button class="nav-btn" onclick="showPage('about')">ℹ️ About</button>
+        </nav>
+
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2em;">Featured Wallpapers</h2>
+            <div class="wallpaper-grid" id="homeGrid"></div>
+        </div>
+
+        <!-- Categories Page -->
+        <div id="categories" class="page">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2em;">Browse by Category</h2>
+            <div class="category-filter" id="categoryFilter"></div>
+            <div class="wallpaper-grid" id="categoryGrid"></div>
+        </div>
+
+        <!-- Search Page -->
+        <div id="search" class="page">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2em;">Search Wallpapers</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for wallpapers..." onkeyup="searchWallpapers()">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="wallpaper-grid" id="searchGrid"></div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="about-content">
+                <h2>About KEN WALLPAPERS</h2>
+                <p>Welcome to KEN WALLPAPERS - your gateway to a futuristic world of stunning digital art and wallpapers.</p>
+                <p>We curate the finest collection of high-resolution wallpapers across various categories including Urban, Sci-Fi, Abstract, and Nature themes. Our mission is to bring the future to your screen with cutting-edge visuals that inspire and amaze.</p>
+                <p>Every wallpaper in our collection is carefully selected to ensure the highest quality and visual impact. Whether you're looking for cyberpunk cityscapes, abstract art, or breathtaking nature scenes, we've got you covered.</p>
+                <p><strong>Features:</strong></p>
+                <p>✓ High-resolution downloads in multiple resolutions<br>
+                ✓ Dark and Light mode for comfortable browsing<br>
+                ✓ Easy search and category filtering<br>
+                ✓ Regular updates with fresh content<br>
+                ✓ Free to use for personal projects</p>
+                <p style="text-align: center; margin-top: 40px; font-size: 1.3em; font-weight: bold;">Welcome to the future. Welcome to KEN WALLPAPERS.</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="add-wallpaper-btn" onclick="openAddModal()">+</button>
+
+    <!-- Add Wallpaper Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeAddModal()">×</button>
+            <h2>Add New Wallpaper</h2>
+            <form onsubmit="addWallpaper(event)">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="wallpaperTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="wallpaperCategory" required>
+                        <option value="Urban">Urban</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Abstract">Abstract</option>
+                        <option value="Nature">Nature</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="wallpaperUrl" required placeholder="https://example.com/image.jpg">
+                </div>
+                <div class="form-group">
+                    <label>Tags (comma separated)</label>
+                    <input type="text" id="wallpaperTags" placeholder="cyberpunk, neon, city">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Add Wallpaper</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeDownloadModal()">×</button>
+            <h2>Download Wallpaper</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Select your preferred resolution:</p>
+            <div class="download-options">
+                <button class="download-btn" onclick="downloadWallpaper('1920x1080')">📱 1920x1080 (Full HD)</button>
+                <button class="download-btn" onclick="downloadWallpaper('2560x1440')">🖥️ 2560x1440 (2K)</button>
+                <button class="download-btn" onclick="downloadWallpaper('3840x2160')">🖥️ 3840x2160 (4K)</button>
+                <button class="download-btn" onclick="downloadWallpaper('5120x2880')">🖥️ 5120x2880 (5K)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let wallpapers = [
+            {
+                id: 1,
+                title: 'Neon Cityscape',
+                category: 'Urban',
+                url: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800',
+                tags: ['neon', 'city', 'night']
+            },
+            {
+                id: 2,
+                title: 'Cyberpunk Street',
+                category: 'Sci-Fi',
+                url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800',
+                tags: ['cyberpunk', 'futuristic', 'technology']
+            },
+            {
+                id: 3,
+                title: 'Abstract Space',
+                category: 'Abstract',
+                url: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800',
+                tags: ['space', 'abstract', 'galaxy']
+            },
+            {
+                id: 4,
+                title: 'Mountain Sunset',
+                category: 'Nature',
+                url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+                tags: ['mountain', 'sunset', 'nature']
+            },
+            {
+                id: 5,
+                title: 'Digital Matrix',
+                category: 'Sci-Fi',
+                url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800',
+                tags: ['digital', 'matrix', 'code']
+            },
+            {
+                id: 6,
+                title: 'Urban Night',
+                category: 'Urban',
+                url: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800',
+                tags: ['urban', 'night', 'city']
+            }
+        ];
+
+        let selectedWallpaper = null;
+        let selectedCategory = 'all';
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+            const toggle = document.querySelector('.theme-toggle');
+            toggle.textContent = document.body.classList.contains('dark') ? '🌙' : '☀️';
+        }
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(pageName).classList.add('active');
+            event.target.classList.add('active');
+
+            if (pageName === 'home') {
+                renderWallpapers('homeGrid', wallpapers);
+            } else if (pageName === 'categories') {
+                renderCategories();
+                filterByCategory('all');
+            } else if (pageName === 'search') {
+                renderWallpapers('searchGrid', wallpapers);
+            }
+        }
+
+        function renderWallpapers(gridId, papers) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = papers.map(w => `
+                <div class="wallpaper-card" onclick="openDownloadModal(${w.id})">
+                    <img src="${w.url}" alt="${w.title}">
+                    <div class="wallpaper-info">
+                        <div class="wallpaper-title">${w.title}</div>
+                        <div class="wallpaper-category">${w.category}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCategories() {
+            const categories = ['all', ...new Set(wallpapers.map(w => w.category))];
+            const filter = document.getElementById('categoryFilter');
+            filter.innerHTML = categories.map(cat => `
+                <button class="${cat === selectedCategory ? 'active' : ''}" onclick="filterByCategory('${cat}')">
+                    ${cat.toUpperCase()}
+                </button>
+            `).join('');
+        }
+
+        function filterByCategory(category) {
+            selectedCategory = category;
+            const filtered = category === 'all' ? wallpapers : wallpapers.filter(w => w.category === category);
+            renderWallpapers('categoryGrid', filtered);
+            renderCategories();
+        }
+
+        function searchWallpapers() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = wallpapers.filter(w => 
+                w.title.toLowerCase().includes(query) ||
+                w.category.toLowerCase().includes(query) ||
+                w.tags.some(tag => tag.toLowerCase().includes(query))
+            );
+            renderWallpapers('searchGrid', filtered);
+        }
+
+        function openAddModal() {
+            document.getElementById('addModal').classList.add('active');
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').classList.remove('active');
+        }
+
+        function addWallpaper(event) {
+            event.preventDefault();
+            const newWallpaper = {
+                id: wallpapers.length + 1,
+                title: document.getElementById('wallpaperTitle').value,
+                category: document.getElementById('wallpaperCategory').value,
+                url: document.getElementById('wallpaperUrl').value,
+                tags: document.getElementById('wallpaperTags').value.split(',').map(t => t.trim())
+            };
+            wallpapers.push(newWallpaper);
+            closeAddModal();
+            renderWallpapers('homeGrid', wallpapers);
+            event.target.reset();
+            alert('Wallpaper added successfully!');
+        }
+
+        function openDownloadModal(id) {
+            selectedWallpaper = wallpapers.find(w => w.id === id);
+            document.getElementById('downloadModal').classList.add('active');
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+            selectedWallpaper = null;
+        }
+
+        function downloadWallpaper(resolution) {
+            if (selectedWallpaper) {
+                const link = document.createElement('a');
+                link.href = selectedWallpaper.url;
+                link.download = `${selectedWallpaper.title}-${resolution}.jpg`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                alert(`Downloading ${selectedWallpaper.title} in ${resolution} resolution!`);
+                closeDownloadModal();
+            }
+        }
+
+        // Initialize
+        renderWallpapers('homeGrid', wallpapers);
+    </script>
+</body>
+</html>
